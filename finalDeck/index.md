@@ -11,15 +11,17 @@ mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 ---
 
-## Guess the number
+## Guess the number - Summary
 
 My assignment is not an analysis _per se_, but I hope it is fun to try out
+In this interface you're playing a game of guessing a random generated number between 1 and 100
 
 --- .class #id 
 
-## Summary
+## References 
 
-In this interface you're playing a game of guessing a random generated number between 1 and 100
+The game can be played at https://tiagosgc.shinyapps.io/final/
+This documentation is hosted @ https://github.com/tiagosgc/finalDeck/
 
 ---
 

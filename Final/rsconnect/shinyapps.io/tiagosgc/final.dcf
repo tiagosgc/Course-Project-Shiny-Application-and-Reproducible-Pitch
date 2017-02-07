@@ -3,6 +3,8 @@ title:
 account: tiagosgc
 server: shinyapps.io
 appId: 155086
-bundleId: 701572
+bundleId: 704144
 url: https://tiagosgc.shinyapps.io/final/
-when: 1486332383.45579
+when: 1486507893.77894
+asMultiple: FALSE
+asStatic: FALSE
