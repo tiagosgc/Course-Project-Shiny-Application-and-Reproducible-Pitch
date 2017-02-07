@@ -13,38 +13,111 @@ library(shiny)
 ui <- fluidPage(
    
    # Application title
-   titlePanel("Old Faithful Geyser Data"),
+   titlePanel("Guess the Number - the game. YAY"),
    
    # Sidebar with a slider input for number of bins 
    sidebarLayout(
       sidebarPanel(
-         sliderInput("bins",
-                     "Number of bins:",
+         sliderInput("guess",
+                     "Place your Guess",
                      min = 1,
-                     max = 50,
-                     value = 30)
-      ),
+                     max = 100,
+                     value = NULL),
+         submitButton("Guess!")
+         #"guessBtn", 
+        ), 
       
-      # Show a plot of the generated distribution
       mainPanel(
-         plotOutput("distPlot")
+         h1("Instructions on how to play:"),
+         tags$ol(
+             tags$li("Just slide the slider to your guess."), 
+             tags$li("Learn if you are higher or lower than the random number generated"),
+             tags$li("Try to get there in 7 or less tries. Should be doable. Good luck.")
+         ),
+         #h1(textOutput("distText")),
+         #h1(textOutput("tries"))
+         h2(textOutput("title")),
+         #p(textOutput("debug")),
+         p(textOutput("text7")),
+         p(textOutput("text6")),
+         p(textOutput("text5")),
+         p(textOutput("text4")),
+         p(textOutput("text3")),
+         p(textOutput("text2")),
+         p(textOutput("text1"))
+         
       )
    )
 )
 
-# Define server logic required to draw a histogram
-server <- function(input, output) {
-   
-   output$distPlot <- renderPlot({
-      # generate bins based on input$bins from ui.R
-      x    <- faithful[, 2] 
-      bins <- seq(min(x), max(x), length.out = input$bins + 1)
-      
-      # draw the histogram with the specified number of bins
-      hist(x, breaks = bins, col = 'darkgray', border = 'white')
-   })
+debug <- function(guessArg) {
+    c(guessArg,"remaining:",remainingTriesStatic, " target:",target)
+}
+displayLog<- function(guessArg,level)
+{
+    guessArg
+    log[level]
 }
 
-# Run the application 
+updateGuess <- function(guessArg) {
+    #values$remainingTries <-values$remainingTries+ 1 
+    #if (remainingTriesStatic==8) {
+    #    remainingTriesStatic <<- remainingTriesStatic -1
+    #    return
+    #}
+    if (guessed == 1)
+    {
+        "You already guessed, please stop poking the slider"
+    } else {
+        if (remainingTriesStatic==0) {
+            "Game Over - Please stop poking the slider"
+        }
+        else 
+        {
+            if (guessArg < target) {
+                newString<- paste(c(remainingTriesStatic,": ",guessArg, " is too LOW"),collapse='')
+            }
+            if (guessArg > target) {
+                newString<- paste(c(remainingTriesStatic,": ",guessArg, " is too HIGH"),collapse='')
+            }
+            if (guessArg == target) {
+                newString<- paste(c("Congratulations, you just guessed the right number: ",target),collapse = '')
+                guessed <<- 1 
+            }
+            log[remainingTriesStatic] <<- newString
+            remainingTriesStatic <<- remainingTriesStatic -1
+            #values$remainingTries <- values$remainingTries#values$remainingTries#- 1 
+            c(remainingTriesStatic," tries remaining")
+        }
+    }
+    
+}
+
+server <- function(input, output) {
+    
+    output$title <- renderText({updateGuess(input$guess)})
+    output$debug <- renderText({debug(input$guess)})
+    output$text7 <-  renderText({displayLog(input$guess,7)})
+    output$text6 <-  renderText({displayLog(input$guess,6)})
+    output$text5 <-  renderText({displayLog(input$guess,5)})
+    output$text4 <-  renderText({displayLog(input$guess,4)})
+    output$text3 <-  renderText({displayLog(input$guess,3)})
+    output$text2 <-  renderText({displayLog(input$guess,2)})
+    output$text1 <-  renderText({displayLog(input$guess,1)})
+    
+    
+    
+}
+guessed=0
+remainingTriesStatic <- 8
+target=as.integer(runif(1,1,100))
+log=c(rep("",7))
+#labels[2] <- "label 2"
+#labels[3] <- "label 3"
+#labels[4] <- "label 4"
+#labels[5] <- "label 5"
+#labels[6] <- "label 6"
+#labels[7] <- "label 7"
 shinyApp(ui = ui, server = server)
+
 

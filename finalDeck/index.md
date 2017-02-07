@@ -32,7 +32,8 @@ If you eliminate half of the possible numbers in each try, you should always be 
 
 ## Some code to demonstrate my point
 
-```{r, eval=FALSE}
+
+```r
 n<-100
 i<-c(1,2,3,4,5,6,7)
 for (val in i) {
@@ -42,24 +43,21 @@ for (val in i) {
         n),collapse = ''))
     
 }
-
 ```
 
 ---
 
 ## And the same code output
 
-```{r, eval=TRUE, echo =FALSE, comment=''}
-n<-100
-i<-c(1,2,3,4,5,6,7)
-for (val in i) {
-    n <- ceiling(n/2)
-    print(paste(c("Iteration ", val,
-        ", # possible answers = ",
-        n),collapse = ''))
-    
-}
 
+```
+[1] "Iteration 1, # possible answers = 50"
+[1] "Iteration 2, # possible answers = 25"
+[1] "Iteration 3, # possible answers = 13"
+[1] "Iteration 4, # possible answers = 7"
+[1] "Iteration 5, # possible answers = 4"
+[1] "Iteration 6, # possible answers = 2"
+[1] "Iteration 7, # possible answers = 1"
 ```
 
 

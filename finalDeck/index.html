@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<title>Course Project final assignment</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=1274, user-scalable=no">
+	<meta name="description" content="Course Project final assignment">
+	<meta name="author" content="Tiago Carvalho">
+	<meta name="generator" content="slidify" />
+	<!-- LOAD STYLE SHEETS -->
+	<link rel="stylesheet" href="libraries/frameworks/shower/themes/ribbon/styles/screen.css">
+	<link rel="stylesheet" media="print"
+	  href="libraries/frameworks/shower/themes/ribbon/styles/print.css">
+	<link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css">  <link rel="stylesheet" href = "assets/css/ribbons.css">
+
+	<!--
+		To apply styles to the certain slides
+		use slide ID to get needed elements
+		-->
+	<style>
+		#Cover h2 {
+      margin:65px 0 0;
+			color:#FFF;
+			text-align:center;
+			font-size:70px;
+			}
+		#FitToWidth h2,
+		#FitToHeight h2 {
+			color:#FFF;
+			text-align:center;
+			}
+	</style> 
+</head>
+<body class="list">
+  <header class="caption">
+  	<h1>Course Project final assignment</h1>
+	</header>
+  <section class="slide " id="slide-1">
+  <div>
+    <h2>Guess the number</h2>
+    <p>My assignment is not an analysis <em>per se</em>, but I hope it is fun to try out</p>
+
+  </div>
+</section>
+<section class="slide class" id="id">
+  <div>
+    <h2>Summary</h2>
+    <p>In this interface you&#39;re playing a game of guessing a random generated number between 1 and 100</p>
+
+  </div>
+</section>
+<section class="slide " id="slide-3">
+  <div>
+    <h2>Why 7 tries?</h2>
+    <p>If you eliminate half of the possible numbers in each try, you should always be able to guess in 7 tries</p>
+
+  </div>
+</section>
+<section class="slide " id="slide-4">
+  <div>
+    <h2>Some code to demonstrate my point</h2>
+    <pre><code class="r">n&lt;-100
+i&lt;-c(1,2,3,4,5,6,7)
+for (val in i) {
+    n &lt;- ceiling(n/2)
+    print(paste(c(&quot;Iteration &quot;, val,
+        &quot;, number of possible answers reduced to &quot;,
+        n),collapse = &#39;&#39;))
+
+}
+</code></pre>
+
+  </div>
+</section>
+<section class="slide " id="slide-5">
+  <div>
+    <h2>And the same code output</h2>
+    <pre><code>[1] &quot;Iteration 1, # possible answers = 50&quot;
+[1] &quot;Iteration 2, # possible answers = 25&quot;
+[1] &quot;Iteration 3, # possible answers = 13&quot;
+[1] &quot;Iteration 4, # possible answers = 7&quot;
+[1] &quot;Iteration 5, # possible answers = 4&quot;
+[1] &quot;Iteration 6, # possible answers = 2&quot;
+[1] &quot;Iteration 7, # possible answers = 1&quot;
+</code></pre>
+
+  </div>
+</section>
+  <div class="progress">
+    <div></div>
+  </div>
+	<script src="libraries/frameworks/shower/shower.js"></script>
+	<!-- LOAD HIGHLIGHTER JS FILES -->
+	<script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+	 
+		<!-- Copyright © 2010–2012 Vadim Makeev — pepelsbey.net -->
+	<!-- Photos by John Carey — fiftyfootshadows.net -->
+</body>
+</html>
